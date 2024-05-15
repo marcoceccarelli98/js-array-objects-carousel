@@ -26,6 +26,7 @@ const images = [
 ];
 
 //Declare elements
+const body = document.body;
 const itemsContainer = document.querySelector('.items');
 const prev = document.querySelector('.prev');
 const next = document.querySelector('.next');
@@ -46,6 +47,8 @@ let activeIndex = 0;
 insertImages();
 
 insertThumbs();
+
+insertBtn();
 
 // -----------
 //   EVENTS
@@ -114,6 +117,30 @@ function insertImages() {
         item.append(img);
         itemsContainer.append(item);
     });
+}
+
+function insertBtn() {
+    const btnContainer = document.createElement('div');
+    const btnPlay = document.createElement('button');
+    const btnPause = document.createElement('button');
+    const btnInvert = document.createElement('button');
+
+    btnContainer.classList.add('btn-container');
+
+    btnPlay.innerHTML = 'Play';
+    btnPlay.classList.add('btn');
+    btnPause.innerHTML = 'Pause';
+    btnPause.classList.add('btn');
+    btnInvert.innerHTML = 'Invert';
+    btnInvert.classList.add('btn');
+
+    // btnPlay.addEventListener('click',)
+
+    btnContainer.append(btnPlay);
+    btnContainer.append(btnPause);
+    btnContainer.append(btnInvert);
+
+    body.append(btnContainer);
 }
 
 function setActiveImg() {
