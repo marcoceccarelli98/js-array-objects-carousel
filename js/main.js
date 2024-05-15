@@ -1,5 +1,6 @@
 'use strict';
 
+//IMAGES ARRAY OF OBJ
 const images = [
     {
         image: 'img/01.webp',
@@ -23,3 +24,26 @@ const images = [
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
+
+//Declare elements
+const itemsContainer = document.querySelector('.items');
+const prev = document.querySelector('.prev');
+const next = document.querySelector('.next');
+const item = document.createElement('div');
+const img = document.createElement('img');
+
+//Declare index
+let activeIndex = 0;
+
+//Add classes and path for img 
+//img.src = itemActive.image;
+item.classList.add('item');
+
+//Append img to item and then item to container
+itemsContainer.append(item);
+
+next.addEventListener('click', () => {
+    img.src = images[activeIndex].image;
+    item.classList.add('active');
+    item.append(img);
+});
