@@ -71,11 +71,22 @@ prev.addEventListener('click', () => {
     setActiveThumb();
 });
 
-thumbsContainer.addEventListener('click', e => {
-    activeIndex = e.target.closest('.thumb').getAttribute('data-index');
-    setActiveThumb(e);
+thumbsContainer.addEventListener('click', element => {
+    activeIndex = element.target.closest('.thumb').getAttribute('data-index');
+    setActiveThumb();
     setActiveImg();
 });
+
+const intervalCarousel = setInterval(function () {
+    if (activeIndex >= images.length - 1) {
+        activeIndex = 0;
+    } else {
+        activeIndex++;
+    }
+    setActiveImg();
+    setActiveThumb();
+}, 3000); // 3000 ms = 3sec
+
 
 // -----------
 //  FUNCTIONS
