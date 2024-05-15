@@ -45,7 +45,24 @@ item.classList.add('item');
 itemsContainer.append(item);
 
 next.addEventListener('click', () => {
+    if (activeIndex >= images.length - 1) {
+        activeIndex = 0;
+    } else {
+        activeIndex++;
+    }
+    setActive();
+});
 
+prev.addEventListener('click', () => {
+    if (activeIndex <= 0) {
+        activeIndex = images.length - 1;
+    } else {
+        activeIndex--;
+    }
+    setActive();
+});
+
+function setActive() {
     h1.innerText = images[activeIndex].title;
     h3.innerHTML = images[activeIndex].text
     img.src = images[activeIndex].image;
@@ -53,4 +70,4 @@ next.addEventListener('click', () => {
     item.append(img);
     item.append(h1);
     item.append(h3);
-});
+}
