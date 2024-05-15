@@ -31,6 +31,8 @@ const prev = document.querySelector('.prev');
 const next = document.querySelector('.next');
 const item = document.createElement('div');
 const img = document.createElement('img');
+const h1 = document.createElement('h1');
+const h3 = document.createElement('h3');
 
 //Declare index
 let activeIndex = 0;
@@ -43,7 +45,12 @@ item.classList.add('item');
 itemsContainer.append(item);
 
 next.addEventListener('click', () => {
+
+    h1.innerText = images[activeIndex].title;
+    h3.innerHTML = images[activeIndex].text
     img.src = images[activeIndex].image;
     item.classList.add('active');
     item.append(img);
+    item.append(h1);
+    item.append(h3);
 });
