@@ -37,6 +37,8 @@ const h3 = document.createElement('h3');
 
 const thumbsContainer = document.querySelector('.thumbs');
 
+let invertedOrder = false;
+
 // -----------
 //    MAIN
 // -----------
@@ -75,7 +77,9 @@ prev.addEventListener('click', () => {
 });
 
 thumbsContainer.addEventListener('click', element => {
+    console.log(activeIndex - 1);
     activeIndex = element.target.closest('.thumb').getAttribute('data-index');
+    //activeIndex = document.querySelector('.thumbs .thumb.active').getAttribute('data-index');
     setActiveThumb();
     setActiveImg();
 });
@@ -134,7 +138,38 @@ function insertBtn() {
     btnInvert.innerHTML = 'Invert';
     btnInvert.classList.add('btn');
 
-    // btnPlay.addEventListener('click',)
+    btnPlay.addEventListener('click', () => {
+        const intervalCarousel = setInterval(function () {
+            if (!invertedOrder) {
+                if (activeIndex >= images.length - 1) {
+                    activeIndex = 0;
+                } else {
+                    activeIndex++;
+                }
+            } else {
+                if (activeIndex <= 0) {
+                    activeIndex = images.length - 1;
+                } else {
+                    activeIndex--;
+                }
+            }
+            setActiveImg();
+            setActiveThumb();
+        }, 3000); // 3000 ms = 3sec
+
+    });
+
+    btnPause.addEventListener('click', () => {
+        clearInterval(intervalCarousel);
+    });
+
+    btnInvert.addEventListener('click', () => {
+        if (invertedOrder) {
+            invertedOrder = false;
+        } else {
+            invertedOrder = true;
+        }
+    })
 
     btnContainer.append(btnPlay);
     btnContainer.append(btnPause);
